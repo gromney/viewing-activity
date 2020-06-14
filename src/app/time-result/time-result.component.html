@@ -14,7 +14,9 @@
         </div>
     </div>
     <div class="loadfile-container">
-        <input type="file" name="file" id="file" accept=".csv,text/plain">
+        <input 
+                type="file" name="file" id="file" accept=".csv,text/plain" 
+                (change)="onChange($event.target.files)">
     </div>
     <div class="grid-container">
         <div class="card">
