@@ -17,3 +17,19 @@
     padding: 0px 20px 0px 20px;
     align-items: center;
 }
+
+/* file uploader */
+.loadfile-container{
+    display: flex;
+    align-items: center;
+    min-height: 100px;
+}
+
+/* grid container */
+.grid-container{
+    display: flex;
+    flex: 1;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+}
