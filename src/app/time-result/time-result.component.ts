@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { TmdbService } from '../service/tmdb.service';
+import { MovieDetail } from '../models/movie-detail.model';
+import { TvShowDetail } from '../models/tvshow-detail.model';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'va-time-result',
@@ -7,10 +10,20 @@ import { TmdbService } from '../service/tmdb.service';
   styleUrls: ['./time-result.component.css']
 })
 export class TimeResultComponent implements OnInit {
+  tvshows: TvShowDetail[] =[];
+  movies: MovieDetail[]=[];
+
+  imgBaseUrl = environment.tmdb.imageBaseUrl;
 
   constructor(private tmdbService: TmdbService) { }
 
   ngOnInit(): void {
+    this.tmdbService.loadedNetflixData.subscribe(d => {
+      this.tvshows =d.tvshows
+    });
+    this.tmdbService.loadedNetflixData.subscribe(m => {
+      this.movies = m.movies;
+    })
   }
 
   onChange(files: FileList) {
@@ -30,5 +43,6 @@ export class TimeResultComponent implements OnInit {
 
     }
   }
+
 
 }
