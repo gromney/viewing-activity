@@ -11,6 +11,7 @@ import { Movie } from '../models/movie.model';
 import { TmdbTvshowResponse } from '../models/tmdbTvshowResponse';
 import { Title } from '@angular/platform-browser';
 import { stringify } from 'querystring';
+import { MovieDetail } from '../models/movie-detail.model';
 
 
 const apiKey = environment.tmdb.apiKey;
@@ -53,25 +54,30 @@ export class TmdbService {
 
         movies.pipe(
             concatMap(data => {
-                return this.searchMovie(data.Title)
+                return this.searchMovie(data.Title).pipe(
+                    concatMap(movies => {
+                        return this.getMovieDetails(movies[0].id)
+                    })
+                )
             })
-        ).subscribe(x => console.log(x));
+        ).subscribe(x => console.log('MOVIE DETAILS',x));
 
         tvshow.pipe(
             groupBy(x => x.Title),
             mergeMap(g => g.pipe(
                 reduce((acc, cur) => [...acc, cur], [`${g.key}`]))),
-            map(arr => ({ Title: arr[0], watched_episodes: arr.slice(1).length }) )
+            map(arr => ({ Title: arr[0], watched_episodes: arr.slice(1).length }))
         ).pipe(
-            concatMap(tvshow => {                
+            concatMap(tvshow => {
                 return this.searchTvshow(tvshow.Title)
             })
         ).subscribe(x => console.log(x))
-            
+
     }
 
     private searchMovie(title: string) {
-
+        ///TODO: get all results when multiple pages returned
+        
         return this.http.get<TmdbMovieResponse>(`${apiBaseUrl}/search/movie`, {
             params: this.defautParams.append('query', title)
         }).pipe(
@@ -79,6 +85,12 @@ export class TmdbService {
                 return resp.results.filter(x => x.title == title);
             })
         )
+    }
+
+    getMovieDetails(id: number) {
+        return this.http.get<MovieDetail>(`${apiBaseUrl}/movie/${id}`, {
+            params: new HttpParams().set('api_key', apiKey)
+        });
     }
 
     private searchTvshow(title) {
