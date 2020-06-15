@@ -65,6 +65,8 @@ img {
     height: 30px;
     font-size: 1.125em;
     padding: 0;
+    background-image: linear-gradient(to top,#573280,#573280a0);
+
 }
 
 .title {
