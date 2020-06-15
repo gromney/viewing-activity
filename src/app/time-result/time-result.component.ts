@@ -23,7 +23,7 @@ export class TimeResultComponent implements OnInit {
       }
 
       reader.onloadend = () => {
-        this.tmdbService.csvToJson();
+        this.tmdbService.updateNetflixData();
       }
       
       reader.readAsText(file);
