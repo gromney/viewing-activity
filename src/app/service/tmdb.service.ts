@@ -1,15 +1,28 @@
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 import { Papa } from 'ngx-papaparse';
-import { from } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { from, partition, of } from 'rxjs';
+import { map, concatMap, skipWhile, groupBy, mergeMap, zip, toArray, reduce, } from 'rxjs/operators';
 import { NetflixData } from '../models/NetflixData';
+import { environment } from 'src/environments/environment';
+import { TmdbMovieResponse } from '../models/tmdbMovieResponse';
+import { Movie } from '../models/movie.model';
+import { TmdbTvshowResponse } from '../models/tmdbTvshowResponse';
+import { Title } from '@angular/platform-browser';
+import { stringify } from 'querystring';
+
+
+const apiKey = environment.tmdb.apiKey;
+const apiBaseUrl = environment.tmdb.apiBaseUrl;
 
 @Injectable({ providedIn: 'root' })
 export class TmdbService {
-    netflixData: NetflixData[];
+    private defautParams = new HttpParams().set('api_key', apiKey).set('page', '1').set('include_adul', 'false');
 
-    constructor(private papa: Papa) { }
+    netflixData: NetflixData[] = [];
+
+    constructor(private http: HttpClient, private papa: Papa) { }
 
     updateNetflixData() {
         const csv = JSON.parse(localStorage.getItem('netflix_data') || '[]');
@@ -21,16 +34,65 @@ export class TmdbService {
                 this.jsonToNetflixData(result.data);
             }
         })
-        
+
+        this.getTmdbData();
     }
 
-    jsonToNetflixData(data: { Title: string, Date: string }[]) {
+    private jsonToNetflixData(data: { Title: string, Date: string }[]) {
         let netflix_dat = from(data);
-        this.netflixData = [] ;
+        this.netflixData = [];
         netflix_dat.pipe(
             map(x => {
                 return new NetflixData(x.Title, x.Date);
             })
         ).subscribe(x => this.netflixData.push(x))
     }
+
+    private getTmdbData() {
+        let [tvshow, movies] = partition(this.netflixData, (val) => val.Type == 'TvShow');
+
+        movies.pipe(
+            concatMap(data => {
+                return this.searchMovie(data.Title)
+            })
+        ).subscribe(x => console.log(x));
+
+        tvshow.pipe(
+            groupBy(x => x.Title),
+            mergeMap(g => g.pipe(
+                reduce((acc, cur) => [...acc, cur], [`${g.key}`]))),
+            map(arr => ({ Title: arr[0], watched_episodes: arr.slice(1).length }) )
+        ).pipe(
+            concatMap(tvshow => {                
+                return this.searchTvshow(tvshow.Title)
+            })
+        ).subscribe(x => console.log(x))
+            
+    }
+
+    private searchMovie(title: string) {
+
+        return this.http.get<TmdbMovieResponse>(`${apiBaseUrl}/search/movie`, {
+            params: this.defautParams.append('query', title)
+        }).pipe(
+            map(resp => {
+                return resp.results.filter(x => x.title == title);
+            })
+        )
+    }
+
+    private searchTvshow(title) {
+        return this.http.get<TmdbTvshowResponse>(`${apiBaseUrl}/search/tv`, {
+            params: this.defautParams.append('query', title)
+        }).pipe(
+            map(resp => {
+                return resp.results;
+            })
+        )
+    }
+
+
+
+
+
 }
