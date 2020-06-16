@@ -1,0 +1,13 @@
+/* file uploader */
+.loadfile-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    min-width: 60vw;
+    min-height: 200px;
+}
+
+.activity-link{
+    margin-top: 20px;
+}

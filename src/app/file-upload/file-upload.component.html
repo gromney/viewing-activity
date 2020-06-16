@@ -1,0 +1,13 @@
+<div class="loadfile-container">
+    <input type="file" name="file" id="file" accept=".csv,text/plain" (change)="onChange($event.target.files)">
+
+    <span class="activity-link">
+        Get your <a target="_blank" href="https://www.netflix.com/ViewingActivity">Netflix Viewing Activity</a> csv
+        file.
+    </span>
+    <div *ngIf="result.hasResult()" class="clear-data">
+        <small>
+            <a href="#" (click)="onClearData()">Clear Data</a>
+        </small>
+    </div>
+</div>

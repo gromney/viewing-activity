@@ -1,0 +1,16 @@
+<div class="grid-container">
+    <div class="card" *ngFor="let movie of movies; let i = index">
+        <img [src]="imgBaseUrl+movie.poster_path" alt="poster">
+        <div class="details">
+            <span class="title">{{movie.title}}</span>
+            <span class="season-runtime">{{movie.runtime}} min</span>
+        </div>
+    </div>
+    <div class="card" *ngFor="let tv of tvshows; let i = index">
+        <img [src]="imgBaseUrl+tv.poster_path" alt="poster">
+        <div class="details">
+            <span class="title">{{tv.name}}</span>
+            <span class="season-runtime">{{tv.watched_episodes}} / {{tv.number_of_episodes}} </span>
+        </div>
+    </div>
+</div>
