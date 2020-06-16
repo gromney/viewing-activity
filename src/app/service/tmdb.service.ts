@@ -43,9 +43,14 @@ export class TmdbService {
     }
 
     private jsonToNetflixData(data: { Title: string, Date: string }[]) {
-        let netflix_dat = from(data);
+        var date = new Date();
+        date.setFullYear(date.getFullYear() - 1);
+        
+        let last_year_data = data.filter(x => new Date(x.Date) >= date)
+        
+        let netflix_data = from(last_year_data);
         this.netflixData = [];
-        netflix_dat.pipe(
+        netflix_data.pipe(
             map(x => {
                 return new NetflixData(x.Title, x.Date);
             })
