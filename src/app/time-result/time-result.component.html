@@ -1,0 +1,53 @@
+<div class="time-result-container">
+    <div class="share-container">
+        <a *ngIf="result.noResult();else noShows" target="_blank"
+            href="https://twitter.com/intent/tweet?text=https://viewing-activity.web.app/ I'v spend {{result.days}} days, {{result.hours}} hours and {{this.result.minutes}} minutes on Netflix. @bautaBDS make this inspired by https://tiii.me/ to learn @angular">
+            SHARE THIS
+        </a>
+        <ng-template #noShows>
+            <a target="_blank"
+                href="https://twitter.com/intent/tweet?text=https://viewing-activity.web.app/ Calculate your time wasted on Netflix. @bautaBDS make this inspired by https://tiii.me/ to learn @angular">
+                SHARE THIS
+            </a>
+        </ng-template>
+    </div>
+
+    <div class="result-container">
+        <div class="result-part">
+            <span class="number">{{("00"+result.days).slice(-2)}}</span>
+            <span class="description">days</span>
+        </div>
+        <div class="result-part">
+            <span class="number">{{("00"+result.hours).slice(-2)}}</span>
+            <span class="description">hours</span>
+        </div>
+        <div class="result-part">
+            <span class="number">{{("00"+result.minutes).slice(-2)}}</span>
+            <span class="description">minutes</span>
+        </div>
+    </div>
+
+    <div class="loadfile-container">
+        <input type="file" name="file" id="file" accept=".csv,text/plain" (change)="onChange($event.target.files)">
+        <span class="activity-link">
+            Get your <a target="_blank" href="https://www.netflix.com/ViewingActivity">Netflix Viewing Activity</a> csv file.
+        </span>
+    </div>
+
+    <div class="grid-container">
+        <div class="card" *ngFor="let movie of movies; let i = index">
+            <img [src]="imgBaseUrl+movie.poster_path" alt="poster">
+            <div class="details">
+                <span class="title">{{movie.title}}</span>
+                <span class="season-runtime">{{movie.runtime}} min</span>
+            </div>
+        </div>
+        <div class="card" *ngFor="let tv of tvshows; let i = index">
+            <img [src]="imgBaseUrl+tv.poster_path" alt="poster">
+            <div class="details">
+                <span class="title">{{tv.name}}</span>
+                <span class="season-runtime">{{tv.watched_episodes}} / {{tv.number_of_episodes}} </span>
+            </div>
+        </div>
+    </div>
+</div>

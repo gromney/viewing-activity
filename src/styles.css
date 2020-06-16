@@ -1,1 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+    height: 100vh;
+    background-color: #573280;
+    color:#cecfc7;
+
+}
+
+a  {
+    font-size: 1em;
+    font-weight: bolder;
+    text-decoration: none;
+    color:  #7F9FB8;
+}
+
+a:hover{
+    text-decoration: underline;
+}
