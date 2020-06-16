@@ -1,3 +1,11 @@
+.share-container {
+    display: flex;
+    justify-content: center;
+    margin: 32px;
+
+}
+
+/* time result */
 .time-result-container {
     display: flex;
     align-items: center;
@@ -31,7 +39,9 @@
 .loadfile-container{
     display: flex;
     align-items: center;
-    min-height: 100px;
+    justify-content: center;
+    min-width: 60vw;
+    min-height: 200px;
 }
 
 /* grid container */

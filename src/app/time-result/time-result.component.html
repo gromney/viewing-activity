@@ -1,4 +1,15 @@
 <div class="time-result-container">
+    <div class="share-container">
+        <a *ngIf="result.noResult();else noShows" target="_blank" href="https://twitter.com/intent/tweet?text=https://viewing-activity.web.app/ I'v spend {{result.days}} days, {{result.hours}} hours and {{this.result.minutes}} minutes on Netflix. @bautaBDS make this inspired by https://tiii.me/ to learn @angular">
+            SHARE THIS
+        </a>
+        <ng-template #noShows>
+            <a target="_blank" href="https://twitter.com/intent/tweet?text=https://viewing-activity.web.app/ Calculate your time wasted on Netflix. @bautaBDS make this inspired by https://tiii.me/ to learn @angular">
+                SHARE THIS
+            </a>
+        </ng-template>
+    </div>
+
     <div class="result-container">
         <div class="result-part">
             <span class="number">{{("00"+result.days).slice(-2)}}</span>
