@@ -3,7 +3,7 @@ export class TimeSpent {
     hours: number =0;
     minutes: number=0;
 
-    noResult(){
+    hasResult(){
         return (this.days + this.hours + this.minutes) !== 0;
     }
 }

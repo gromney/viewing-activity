@@ -43,6 +43,7 @@ export class TimeResultComponent implements OnInit {
       let reader = new FileReader();
       reader.onload = () => {
         localStorage.setItem('netflix_data', JSON.stringify(reader.result));
+        localStorage.setItem('files_name',file.name)
       }
 
       reader.onloadend = () => {
@@ -53,6 +54,12 @@ export class TimeResultComponent implements OnInit {
 
     }
   }
+
+  onClearData() {
+    localStorage.setItem('netflix_data',JSON.stringify(""));
+    this.tmdbService.updateNetflixData();
+  }
+
 
   getTimeSpent(loadedData: { tvshows: TvShowDetail[], movies: MovieDetail[] } = { tvshows: [], movies: [] }) {
     let min = 0;
