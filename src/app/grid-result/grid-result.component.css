@@ -1,0 +1,48 @@
+/* grid container */
+.grid-container{
+    display: flex;
+    flex: 1;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+}
+.card{
+    max-width: 300px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 0 5px 5px 5px;
+    position: relative;
+}
+
+img {
+    width: 300px;
+    max-width: 300px;
+    max-height: 450;
+    height: auto;
+}
+
+.details{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 30px;
+    font-size: 1.125em;
+    padding: 0;
+    background-image: linear-gradient(to top,#573280,#573280a0);
+}
+
+.title {
+    float: left;
+    margin-left: 5%;
+    width: 60%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align: left
+}
+
+.season-runtime {
+    float: right;
+    margin-right: 5%;
+}
