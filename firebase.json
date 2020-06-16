@@ -1,0 +1,16 @@
+{
+  "hosting": {
+    "public": "dist/viewing-activity",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}

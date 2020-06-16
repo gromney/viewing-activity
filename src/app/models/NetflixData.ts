@@ -1,5 +1,3 @@
-import { timeStamp } from 'console';
-
 export class NetflixData {
     Season: string;
     Episode: string;

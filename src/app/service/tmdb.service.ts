@@ -2,15 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 
 import { Papa } from 'ngx-papaparse';
-import { from, partition, of, BehaviorSubject } from 'rxjs';
-import { map, concatMap, skipWhile, groupBy, mergeMap, zip, toArray, reduce, } from 'rxjs/operators';
+import { from, partition, BehaviorSubject } from 'rxjs';
+import { map, concatMap, groupBy, mergeMap, reduce, } from 'rxjs/operators';
 import { NetflixData } from '../models/NetflixData';
 import { environment } from 'src/environments/environment';
 import { TmdbMovieResponse } from '../models/tmdbMovieResponse';
-import { Movie } from '../models/movie.model';
 import { TmdbTvshowResponse } from '../models/tmdbTvshowResponse';
-import { Title } from '@angular/platform-browser';
-import { stringify } from 'querystring';
 import { MovieDetail } from '../models/movie-detail.model';
 import { TvShowDetail } from '../models/tvshow-detail.model';
 

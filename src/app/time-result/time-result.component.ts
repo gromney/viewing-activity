@@ -4,7 +4,6 @@ import { MovieDetail } from '../models/movie-detail.model';
 import { TvShowDetail } from '../models/tvshow-detail.model';
 import { environment } from 'src/environments/environment';
 import { TimeSpent } from '../models/time-spent.model';
-import { timeStamp } from 'console';
 
 @Component({
   selector: 'va-time-result',
@@ -23,8 +22,8 @@ export class TimeResultComponent implements OnInit {
   ngOnInit(): void {
 
     this.tmdbService.loadedNetflixData.subscribe(d => {
-      this.tvshows = d.tvshows
-      this.movies = d.movies
+      this.tvshows = d.tvshows;
+      this.movies = d.movies;
       this.getTimeSpent(d);
     });
     
