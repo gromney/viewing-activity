@@ -17,7 +17,7 @@ Create and deploy a project with [Angular](https://angular.io/) so I can learn t
 - Cache httpRequest / httpResponse
 - Better Style
 - [GraphQL](https://www.apollographql.com/docs/angular/) (Lots of reading needed)
-- Split **time-result** component
+- ~~Split **time-result** component~~
 - Stats Component and be able to share a graph with the results 
 
 
