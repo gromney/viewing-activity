@@ -1,10 +1,12 @@
 <div class="time-result-container">
     <div class="share-container">
-        <a *ngIf="result.noResult();else noShows" target="_blank" href="https://twitter.com/intent/tweet?text=https://viewing-activity.web.app/ I'v spend {{result.days}} days, {{result.hours}} hours and {{this.result.minutes}} minutes on Netflix. @bautaBDS make this inspired by https://tiii.me/ to learn @angular">
+        <a *ngIf="result.noResult();else noShows" target="_blank"
+            href="https://twitter.com/intent/tweet?text=https://viewing-activity.web.app/ I'v spend {{result.days}} days, {{result.hours}} hours and {{this.result.minutes}} minutes on Netflix. @bautaBDS make this inspired by https://tiii.me/ to learn @angular">
             SHARE THIS
         </a>
         <ng-template #noShows>
-            <a target="_blank" href="https://twitter.com/intent/tweet?text=https://viewing-activity.web.app/ Calculate your time wasted on Netflix. @bautaBDS make this inspired by https://tiii.me/ to learn @angular">
+            <a target="_blank"
+                href="https://twitter.com/intent/tweet?text=https://viewing-activity.web.app/ Calculate your time wasted on Netflix. @bautaBDS make this inspired by https://tiii.me/ to learn @angular">
                 SHARE THIS
             </a>
         </ng-template>
@@ -24,11 +26,12 @@
             <span class="description">minutes</span>
         </div>
     </div>
-    
+
     <div class="loadfile-container">
-        <input 
-                type="file" name="file" id="file" accept=".csv,text/plain" 
-                (change)="onChange($event.target.files)">
+        <input type="file" name="file" id="file" accept=".csv,text/plain" (change)="onChange($event.target.files)">
+        <span class="activity-link">
+            Get your <a target="_blank" href="https://www.netflix.com/ViewingActivity">Netflix Viewing Activity</a> csv file.
+        </span>
     </div>
 
     <div class="grid-container">

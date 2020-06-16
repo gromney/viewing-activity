@@ -2,7 +2,6 @@
     display: flex;
     justify-content: center;
     margin: 32px;
-
 }
 
 /* time result */
@@ -16,7 +15,6 @@
 .result-container{
     display: flex;
     flex-direction: row;
-    
 }
 
 .result-part {
@@ -32,7 +30,7 @@
     font-size: 1em;
     text-align: center;
     text-transform: uppercase;
-    color: var(--light-text);
+    color: #cecfc7;
 }
 
 /* file uploader */
@@ -40,10 +38,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
     min-width: 60vw;
     min-height: 200px;
 }
 
+.activity-link{
+    margin-top: 20px;
+}
 /* grid container */
 .grid-container{
     display: flex;
@@ -76,7 +78,6 @@ img {
     font-size: 1.125em;
     padding: 0;
     background-image: linear-gradient(to top,#573280,#573280a0);
-
 }
 
 .title {
