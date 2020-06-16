@@ -1,27 +1,23 @@
 # ViewingActivity
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.0.
+Calculate your total time spent using [Netflix Viewing Activity](https://www.netflix.com/ViewingActivity) csv file
 
-## Development server
+##Justification
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Create and deploy a project with [Angular](https://angular.io/) so I can learn the framework. Also to show my sister all the time she spends on tv :grin:
 
-## Code scaffolding
+##Features
+1. Consume of API with HttpClient via a Service
+2. Use Routing module 
+3. Use an external library ([Papa Parser](https://www.papaparse.com/))
+4. Poorly Use of [RxJs](https://rxjs.dev/) library :sob:
+5. CSS Flexbox
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+##Nice to have (coming soon)
+- Cache httpRequest / httpResponse
+- Better Style
+- [GraphQL](https://www.apollographql.com/docs/angular/) (Lots of reading needed)
+- Split **time-result** component
+- Stats Component and be able to share a graph with the results 
 
-## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
