@@ -10,6 +10,8 @@ import { TmdbMovieResponse } from '../models/tmdbMovieResponse';
 import { TmdbTvshowResponse } from '../models/tmdbTvshowResponse';
 import { MovieDetail } from '../models/movie-detail.model';
 import { TvShowDetail } from '../models/tvshow-detail.model';
+import { TimeSpent } from '../models/time-spent.model';
+import { LoadedNetflixData } from '../models/loaded-netflix-data.model';
 
 
 const apiKey = environment.tmdb.apiKey;
@@ -19,13 +21,15 @@ const apiBaseUrl = environment.tmdb.apiBaseUrl;
 export class TmdbService {
     private defautParams = new HttpParams().set('api_key', apiKey).set('page', '1').set('include_adul', 'false');
 
-    loadedNetflixData = new BehaviorSubject<{ tvshows: TvShowDetail[], movies: MovieDetail[] }>({ tvshows: [], movies: [] });
+    loadedNetflixData = new BehaviorSubject<LoadedNetflixData>(new LoadedNetflixData());
+    result = new BehaviorSubject<TimeSpent>(new TimeSpent());
+
     netflixData: NetflixData[] = [];
 
     constructor(private http: HttpClient, private papa: Papa) { }
 
     updateNetflixData() {
-        this.loadedNetflixData.next({ tvshows: [], movies: [] });
+        this.loadedNetflixData.next(new LoadedNetflixData());
         const csv = JSON.parse(localStorage.getItem('netflix_data') || '[]');
 
         this.papa.parse(csv, {
@@ -42,9 +46,9 @@ export class TmdbService {
     private jsonToNetflixData(data: { Title: string, Date: string }[]) {
         var date = new Date();
         date.setFullYear(date.getFullYear() - 1);
-        
+
         let last_year_data = data.filter(x => new Date(x.Date) >= date)
-        
+
         let netflix_data = from(last_year_data);
         this.netflixData = [];
         netflix_data.pipe(
@@ -137,9 +141,4 @@ export class TmdbService {
             params: new HttpParams().set('api_key', apiKey)
         });
     }
-
-
-
-
-
 }
