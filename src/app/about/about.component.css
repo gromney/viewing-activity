@@ -17,9 +17,10 @@
     height: 100%;
     background:#23022ed0;
     color: white;
-    
 }
-
+h3, p, smal {
+    font-size: 1.3em;
+}
 .hide {
     opacity: 0;
     z-index: -10;

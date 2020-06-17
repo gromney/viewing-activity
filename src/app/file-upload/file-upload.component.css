@@ -6,6 +6,7 @@
     flex-direction: column;
     min-width: 60vw;
     min-height: 200px;
+    font-size: 1.3em;
 }
 
 .activity-link{
