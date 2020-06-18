@@ -1,6 +1,8 @@
 <div class="about">
     <div class="about-button-container">
-        <a href="#" class="about_button" (click)="onAbout()">ABOUT</a>
+        <a href="#" class="about_button" (click)="onAbout()">
+            <li class="material-icons">help_outline</li>
+        </a>
     </div>
     <div (click)="!show_about ? null: onAbout()" [ngClass]="{about_container:true,hide:!show_about, show:show_about}">
         <h2>Calculate your total time spent on Netflix</h2>
